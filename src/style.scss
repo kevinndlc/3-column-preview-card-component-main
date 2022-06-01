@@ -1,0 +1,145 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-bright-orange: hsl(31, 77%, 52%);
+  --clr-dark-cyan: hsl(184, 100%, 22%);
+  --clr-very-dark-cyan: hsl(179, 100%, 13%);
+  --clr-white-75: hsla(0, 0%, 100%, 0.75);
+  --clr-very-light-gray: hsl(0, 0%, 95%);
+
+  --font-title: 'Big Shoulders Display', cursive;
+  --font-body: 'Lexend Deca', sans-serif;
+}
+
+@mixin md {
+  @media screen and (min-width: 50rem) {
+    @content;
+  }
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: calc(15rem / 16);
+  background-color: var(--clr-very-light-gray);
+  position: relative;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.main {
+  padding: 5.5rem 1.5rem;
+
+  @include md {
+    padding-top: calc(171rem / 16);
+  }
+
+  h1 {
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .grid {
+    display: grid;
+    color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: calc(920rem / 16);
+      min-height: calc(500rem / 16);
+      margin-inline: auto;
+    }
+
+    div:first-child {
+      --clr-accent: var(--clr-bright-orange);
+    }
+    div:nth-child(2) {
+      --clr-accent: var(--clr-dark-cyan);
+    }
+    div:last-child {
+      --clr-accent: var(--clr-very-dark-cyan);
+    }
+
+    div {
+      padding: 3rem;
+      background-color: var(--clr-accent);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      img {
+        margin-bottom: calc(35rem / 16);
+      }
+
+      h2 {
+        font-family: var(--font-title);
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        color: var(--clr-very-light-gray);
+        margin-bottom: calc(25rem / 16);
+      }
+
+      p {
+        line-height: calc(25rem / 16);
+        color: var(--clr-white-75);
+        margin-bottom: calc(25rem / 16);
+      }
+
+      a {
+        display: inline-block;
+        margin-top: auto;
+        line-height: calc(25rem / 16);
+        padding: 0.75rem 2rem;
+        border-radius: 100rem;
+        background-color: var(--clr-very-light-gray);
+        color: var(--clr-accent);
+        text-decoration: none;
+        border: 2px solid transparent;
+
+        &:where(:hover, :focus) {
+          background-color: transparent;
+          color: white;
+          border: 2px solid;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+
+  a {
+    color: var(--clr-bright-orange);
+    font-weight: 700;
+    text-decoration: none;
+
+    &:where(:hover, :focus) {
+      text-decoration: underline;
+    }
+  }
+}
